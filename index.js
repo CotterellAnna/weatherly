@@ -25,7 +25,7 @@ function weatherUpdate(city){
     .then(response =>{
         windspeedEl.innerHTML = (response.wind.speed*3.6).toFixed(2)+`km/h`
         tempEl.textContent = `${Math.round(response.main.temp)}°C`
-        humidEl.innerHTML = `${response.main.humidity}%</sup>`
+        humidEl.innerHTML = `${response.main.humidity}%`
         pressureEl.textContent = `${response.main.pressure}hPa`
         inputContainer.style.backgroundImage=`url(https://open.mapquestapi.com/staticmap/v4/getmap?key=UtdZoRly3u38HB9RSlLNJd2cAD82KsYK&size=600,400&zoom=13&center=${response.coord.lat},${response.coord.lon})`
         cityEL.innerHTML = city
