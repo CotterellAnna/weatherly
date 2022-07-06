@@ -21,7 +21,7 @@ body{
     background-image: url("./images/map.png");
     background-size: cover;
     background-blend-mode: saturation;
-    background-color: rgba(0, 0, 0, 0.29);
+    background-color: rgba(0, 0, 0, 0.19);
     width: 60vw;
     padding: 3% 5%;
 }
