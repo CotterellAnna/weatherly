@@ -1,0 +1,208 @@
+@font-face {
+    font-family: "GT Walsheim Pro";
+    src: url(./fonts/GTWalsheimPro-Regular.ttf);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "GT Walsheim Pro";
+}
+
+#container{
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+#input-container{
+    background-image: url("./images/map.png");
+    background-size: cover;
+    background-blend-mode: saturation;
+    background-color: rgba(0, 0, 0, 0.29);
+    width: 60vw;
+    padding: 3% 5%;
+}
+
+#input-form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#city-container{
+    width: 70%;
+    background: white;
+    padding: 2px 7px;
+}
+
+#city-container p{
+    margin: 1% 0%;
+    font-weight: 400;
+    font-size: 15px;
+    color: #00000070;
+}
+
+#city{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #061A36;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 0;
+    width: 95%;
+}
+
+#submit-btn{
+    width: 25%;
+    background: #061A36;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+#city-container, #submit-btn{
+    border-radius: 6px;
+}
+
+#details-container{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    padding: 3% 5% 0px;
+    text-align: left;
+}
+
+#title{
+    margin: 0px;
+    font-weight: 700;
+    font-size: 64px;
+}
+
+#details-container p{
+    margin: 0px;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+#weather-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#weather-container h5{
+    font-weight: 500;
+    font-size: 32px;
+    margin: 10% 0 5%;
+}
+.card{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5% 0;
+    border-bottom: 2px solid #D9D9D9;
+}
+
+.sub-card{
+    width: 40%;
+}
+
+.desc{
+    color: rgba(0, 0, 0, 0.44);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px
+}
+
+.weather-value{
+    color: #061A36;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.weather-icon{
+    height: 24px;
+    width: 24px;
+}
+
+@media only screen and (max-width:600px){
+
+    #container{
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #input-container{
+        height: 45vh;
+        width: 90%;
+        background-size: auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #input-form{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    #city-container{
+        width: 100%;
+        margin: 2% 0;
+        padding: 0;
+    }
+
+    #city-container p, #city{
+        margin: 5px;
+    }
+    
+    #city-container p{
+        font-size: 9px;
+    }
+
+    #city{
+        font-size: 14px;
+    }
+
+    #submit-btn{
+        width: 100%;
+        margin: 0;
+        padding: 3%;
+        font-size: 12px;
+    }
+
+    #city-container, #submit-btn{
+        border-radius: 4px;
+    }
+
+    #details-container{
+        width: 90%;
+    }
+
+    #details-container #title, #details-container p{
+        display: none;
+    }
+
+    #weather-container{
+        height: 55vh;
+        justify-content: flex-start;
+    }
+    
+    #weather-container h5{
+        font-size: 22px;
+    }
+
+    .dec{
+        font-size: 11px;
+    }
+
+    .weather-value{
+        font-size: 22px;
+    }
+}
