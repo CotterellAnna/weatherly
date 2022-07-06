@@ -5,6 +5,7 @@ let pressureEl = document.getElementById("pressure-el")
 let city = document.getElementById("city")
 let input = document.getElementById("input-form")
 let inputContainer = document.getElementById("input-container")
+let cityEL = document.getElementById("city-el")
 
 input.onsubmit = (e) => {
     e.preventDefault()
@@ -27,7 +28,7 @@ function weatherUpdate(city){
         humidEl.innerHTML = `${response.main.humidity}G.m<sup>-3</sup>`
         pressureEl.textContent = `${response.main.pressure}Pa`
         inputContainer.style.backgroundImage=`url(https://open.mapquestapi.com/staticmap/v4/getmap?key=UtdZoRly3u38HB9RSlLNJd2cAD82KsYK&size=600,400&zoom=13&center=${response.coord.lat},${response.coord.lon})`
-
+        cityEL.innerHTML = city
     })
 }
 
