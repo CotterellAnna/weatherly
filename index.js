@@ -1,11 +1,10 @@
 $(function(){
     let cityName = null;
-    let lon = null;
-    let lat = null;
+    let map_img = null;
 
     const successCallback = (position) => {
-        lat = position.coords.latitude
-        lon = position.coords.longitude
+        let lat = position.coords.latitude
+        let lon = position.coords.longitude
 
         fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=cad7ec124945dcfff04e457e76760d90`)
             .then(res=>{
@@ -14,7 +13,7 @@ $(function(){
             .then(data=>{
                 cityName = data[0].name
                 $("#city").val(cityName)
-                weatherUpdate(cityName);
+                weatherUpdate(cityName, lon, lat);
             })
             .catch(err=>{
                 console.log("unable to get location", err)
@@ -23,7 +22,7 @@ $(function(){
       
     const errorCallback = (error) => {
         console.log(error);
-        weatherUpdate($("#city").val())
+        weatherUpdate("Port Harcourt", lon, lat)
     };
       
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -35,16 +34,17 @@ $(function(){
                 return res.json()
             })
             .then(data =>{
-                console.log(data);
-                lat = data[0].lat;
-                lon = data[0].lon;
+                let lat = data[0].lat;
+                let lon = data[0].lon;
+                weatherUpdate($("#city").val(), lon, lat)
             })
             .catch(err=>{
                 console.log(err);
             })
-        weatherUpdate($("#city").val())
     })
-    function weatherUpdate(city){
+    function weatherUpdate(city, lon, lat){
+        map_img = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/${lon},${lat},10,20/600x600?access_token=pk.eyJ1Ijoib2JhbGFyaSIsImEiOiJjbGZ4dnhnN3QwOWN3M3Byb3JkcDc3OHFoIn0.XrSTe4bSHLcIa09p1cowpA`;
+        
         $.ajax({
             url:`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cad7ec124945dcfff04e457e76760d90&units=metric`,
             complete: function(res, status){
@@ -55,8 +55,7 @@ $(function(){
                     $("#temp-el").text(`${Math.round(data.main.temp)}°C`)
                     $("#humid-el").html(`${data.main.humidity}%`)
                     $("#pressure-el").text(`${data.main.pressure}hPa`)
-                    $("#input-container").css("backgroundImage",`url(https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/${lon},${lat},10,20/600x600?access_token=pk.eyJ1Ijoib2JhbGFyaSIsImEiOiJjbGZ4dnhnN3QwOWN3M3Byb3JkcDc3OHFoIn0.XrSTe4bSHLcIa09p1cowpA)`)
-
+                    $("#input-container").css("backgroundImage",`url(${map_img})`)
                     $("#city-el").html(city)
                 }else{
                     alert("Place not found")
