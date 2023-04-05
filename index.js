@@ -1,4 +1,33 @@
 $(function(){
+    let cityName = null;
+    let lon = null;
+    let lat = null;
+
+    const successCallback = (position) => {
+        lat = position.coords.latitude
+        lon = position.coords.longitude
+
+        fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=cad7ec124945dcfff04e457e76760d90`)
+            .then(res=>{
+                return res.json()
+            })
+            .then(data=>{
+                cityName = data[0].name
+                $("#city").val(cityName)
+                weatherUpdate(cityName);
+            })
+            .catch(err=>{
+                console.log("unable to get location", err)
+            })
+      };
+      
+    const errorCallback = (error) => {
+        console.log(error);
+        weatherUpdate($("#city").val())
+    };
+      
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
     $("#input-form").submit(function(e){
         e.preventDefault()
         weatherUpdate($("#city").val())
@@ -14,7 +43,8 @@ $(function(){
                     $("#temp-el").text(`${Math.round(data.main.temp)}°C`)
                     $("#humid-el").html(`${data.main.humidity}%`)
                     $("#pressure-el").text(`${data.main.pressure}hPa`)
-                    $("#input-container").css("backgroundImage",`url(https://open.mapquestapi.com/staticmap/v4/getmap?key=UtdZoRly3u38HB9RSlLNJd2cAD82KsYK&size=600,400&zoom=13&center=${data.coord.lat},${data.coord.lon})`)
+                    $("#input-container").css("backgroundImage",`url(https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/${lon},${lat},10,20/600x600?access_token=pk.eyJ1Ijoib2JhbGFyaSIsImEiOiJjbGZ4dnhnN3QwOWN3M3Byb3JkcDc3OHFoIn0.XrSTe4bSHLcIa09p1cowpA)`)
+
                     $("#city-el").html(city)
                 }else{
                     alert("Place not found")
@@ -22,5 +52,5 @@ $(function(){
             }
         })
     }
-    weatherUpdate($("#city").val())
+    // weatherUpdate($("#city").val())
 })

@@ -18,7 +18,7 @@ body{
 }
 
 #input-container{
-    background-image: url("./images/map.png");
+    /* background-image: url("./images/map.png"); */
     background-size: cover;
     background-blend-mode: saturation;
     background-color: rgba(0, 0, 0, 0.19);
