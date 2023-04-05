@@ -30,6 +30,18 @@ $(function(){
 
     $("#input-form").submit(function(e){
         e.preventDefault()
+        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${$("#city").val()}&appid=cad7ec124945dcfff04e457e76760d90`)
+            .then(res =>{
+                return res.json()
+            })
+            .then(data =>{
+                console.log(data);
+                lat = data[0].lat;
+                lon = data[0].lon;
+            })
+            .catch(err=>{
+                console.log(err);
+            })
         weatherUpdate($("#city").val())
     })
     function weatherUpdate(city){
