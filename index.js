@@ -43,8 +43,9 @@ $(function(){
             })
     })
     function weatherUpdate(city, lon, lat){
-        map_img = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/${lon},${lat},10,20/600x600?access_token=pk.eyJ1Ijoib2JhbGFyaSIsImEiOiJjbGZ4dnhnN3QwOWN3M3Byb3JkcDc3OHFoIn0.XrSTe4bSHLcIa09p1cowpA`;
-        
+
+        map_img = `https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAkHBgs_vIe6266YOqSoyWLqmDbJNlVHPc&center=${lat},${lon}`
+
         $.ajax({
             url:`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cad7ec124945dcfff04e457e76760d90&units=metric`,
             complete: function(res, status){
